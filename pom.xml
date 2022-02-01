@@ -185,7 +185,15 @@
                 <version>${hbase.version}</version>
                 <exclusions>
                     <exclusion>
+                        <groupId>tomcat</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                    <exclusion>
                         <groupId>javax.servlet</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>javax.servlet.jsp</groupId>
                         <artifactId>*</artifactId>
                     </exclusion>
                     <exclusion>

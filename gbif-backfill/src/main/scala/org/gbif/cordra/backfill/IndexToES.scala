@@ -55,7 +55,7 @@ object IndexToES {
       val gbifId = JsonParser.parseString(json).getAsJsonObject.get("id").getAsJsonArray.get(0).getAsString
       ("\"" + gbifId + "\"", json) // quotes required for ES bulk load to see the string
 
-    }).rdd.repartition(10).saveToEsWithMeta(esIndex, Map(
+    }).rdd.repartition(80).saveToEsWithMeta(esIndex, Map(
       ES_INPUT_JSON -> true.toString
     ))
 

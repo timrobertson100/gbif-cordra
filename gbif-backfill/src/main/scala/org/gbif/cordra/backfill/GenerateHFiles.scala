@@ -53,7 +53,7 @@ object GenerateHFiles {
 
     val spark = SparkSession
       .builder()
-      .appName("Index Cordra Objects")
+      .appName("Generate Cordra HFiles")
       .getOrCreate()
     import spark.implicits._
 

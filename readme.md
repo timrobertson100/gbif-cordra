@@ -26,7 +26,7 @@ drop 'cordra'
 create 'cordra', 
   {NAME => 'm', VERSIONS => 1, COMPRESSION => 'SNAPPY', DATA_BLOCK_ENCODING => 'FAST_DIFF', BLOOMFILTER => 'NONE'},  
   {SPLITS => [
-    '01','02','03'
+    '1','2','3'
   ]}
 ```
 
@@ -36,10 +36,10 @@ Cordra setup notes:
 2. Copy in the [Cordra war](https://repo1.maven.org/maven2/net/cnri/cordra/cordra/2.3.2/cordra-2.3.2.war) and let it expand
 3. Remove `protobuf-java-3.12.2.jar` from lib as it classes with the one in HBase
 4. Copy the built `cordra-hbase-storage-1.0-SNAPSHOT-shaded.jar` to the `../webapps/cordra-2.3.2/WEB-INF/lib/` 
-5. Create a Cordra data directory (e.g. `/data/cordra`)
-6. Copy the `setenv.sh` to `tomcat/bin` changing data directory to that created above
-7. Copy the repoinit.json and config.json to the Cordra data dir
-8. Start tomcat
+5. Create a Cordra data directory (e.g. `/srv/cordra`)
+6. Copy the `setenv.sh` to `tomcat/bin` changing data directory to that created above (or set up `/etc/sysconfig/tomcat`)
+7. Copy the `repoinit.json` and `config.json` to the Cordra data dir and fixup values
+8. Start Tomcat
 
 On startup Cordra will create the Elasticsearch index, and create the original startup objects in HBase. 
 
@@ -95,8 +95,8 @@ for Cordra.
 Example: 
 ``` 
 hdfs dfs -rm -r /tmp/cordra
-spark2-submit --class org.gbif.cordra.backfill.GenerateObjects  \ 
-  --conf spark.dynamicAllocation.enabled=false  \
+spark2-submit --class org.gbif.cordra.backfill.GenerateObjects \ 
+  --conf spark.dynamicAllocation.enabled=false \
   --master yarn \
   --executor-memory 16G \
   --executor-cores 5 \
@@ -112,8 +112,8 @@ A spark script loads the JSON docs and indexes them directly in ES.
 
 Example:  
 ```
-spark2-submit --class org.gbif.cordra.backfill.IndexToES  \
-  --conf spark.dynamicAllocation.enabled=false  \
+spark2-submit --class org.gbif.cordra.backfill.IndexToES \
+  --conf spark.dynamicAllocation.enabled=false \
   --master yarn \
   --executor-memory 8G \
   --executor-cores 2 \
