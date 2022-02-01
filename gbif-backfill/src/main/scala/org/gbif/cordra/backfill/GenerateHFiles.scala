@@ -61,7 +61,6 @@ object GenerateHFiles {
 
     // extract the object ID, salt it, and partition to align with the HBase regions
     val keyedObjects = df.map(r => {
-      //val json = r.getString(df.schema.fieldNames.indexOf("co"))
       val json = r.getString(0) // co is first
 
       // cordra puts everything into arrays such as "id":[123]

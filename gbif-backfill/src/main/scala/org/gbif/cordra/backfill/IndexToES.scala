@@ -42,13 +42,11 @@ object IndexToES {
 
     val cfg = Map(
       ("es.mapping.id", "id")
-
     )
 
     val df = spark.read.avro(sourceDir)
 
-    val docWithId = df.map(r => {
-      //val json = r.getString(df.schema.fieldNames.indexOf("es"))
+    df.map(r => {
       val json = r.getString(1) // co,es are the fields
 
       // cordra puts everything into arrays such as "id":[123]
@@ -59,11 +57,6 @@ object IndexToES {
       ES_INPUT_JSON -> true.toString
     ))
 
-
-
-    // pull out the JSON (only field), and write to elastic search
-    //df.toDF().rdd.map(o => o.getString(0)).repartition(10).saveJsonToEs("cordra", cfg = cfg)
-    //df.toDF().rdd.map(o => o.getString(0)).repartition(10).saveJsonToEs(esIndex)
   }
 
   /**
