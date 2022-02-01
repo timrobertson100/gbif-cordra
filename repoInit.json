@@ -1,0 +1,7 @@
+{
+  "adminPassword": "password",
+  "prefix": "20.5000.123.TEST",
+  "design": {
+    "allowInsecureAuthentication": true
+  }
+}

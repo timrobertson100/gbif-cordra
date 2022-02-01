@@ -1,0 +1,20 @@
+{
+  "storage": {
+    "module": "custom",
+    "className": "org.gbif.cordra.storage.hbase.HBaseStorage",
+    "options": {
+      "zk": "c4zk1.gbif-uat.org,c4zk2.gbif-uat.org,c4zk3.gbif-uat.org:2181",
+      "saltModulus": 3,
+      "tableName": "cordra"
+    }
+  },
+  "index": {
+    "module": "elasticsearch",
+    "options": {
+      "baseUri": "http://uc6n10.gbif.org:9200",
+      "indexName": "cordra",
+      "index.number_of_shards": 10,
+      "index.number_of_replicas": 0
+    }
+  }
+}

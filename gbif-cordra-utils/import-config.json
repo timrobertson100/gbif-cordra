@@ -1,0 +1,7 @@
+{
+  "dwcaPath": "/tmp/svampeatlas.zip",
+  "username": "admin",
+  "password": "password",
+  "baseUri": "http://localhost:8080/cordra-2.3.2/",
+  "schemaName": "Occurrence"
+}
